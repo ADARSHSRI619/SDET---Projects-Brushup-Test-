@@ -1,0 +1,22 @@
+name: QA Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  qa-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint markdown (placeholder)
+        run: echo "Add markdown or code linting here"
+
+      - name: Run smoke tests (placeholder)
+        run: echo "Add API/UI smoke command here"
+
+      - name: Upload artifacts (placeholder)
+        run: echo "Add report upload step here"
