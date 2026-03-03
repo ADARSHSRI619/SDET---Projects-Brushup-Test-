@@ -12,8 +12,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <rest.assured.version>5.4.0</rest.assured.version>
+        <selenium.version>4.21.0</selenium.version>
         <testng.version>7.10.2</testng.version>
+        <webdrivermanager.version>5.8.0</webdrivermanager.version>
         <allure.version>2.27.0</allure.version>
         <allure.maven.version>2.12.0</allure.maven.version>
         <log4j2.version>2.23.1</log4j2.version>
@@ -21,14 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest.assured.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>${rest.assured.version}</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -37,15 +33,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

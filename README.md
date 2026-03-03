@@ -97,14 +97,24 @@ mvn allure:report
 mvn allure:serve
 ```
 
+Allure results are generated under `target/allure-results`.
+
 ## Logging
 
-Request/response logs are captured through custom Rest Assured filter and Log4j2.
+Log4j2 configuration is available at `src/test/resources/log4j2.xml`.
 
-Log file:
+Execution logs are written to:
 
-`target/logs/api-automation.log`
+- Console output
+- `target/logs/automation.log`
+
+## Sample Test Coverage
+
+- `LoginTest` - validates login flow and success message
+- `FormSubmissionTest` - validates form submission and confirmation message
+- `DynamicTableTest` - validates dynamic table row presence and expected content
 
 ## Notes
 
-If Maven dependency/plugin downloads are blocked in your environment, configure a reachable mirror in Maven `settings.xml`.
+- First run requires network access to download Maven dependencies/plugins from Maven Central.
+- If your environment blocks Maven Central, configure a reachable mirror in your Maven `settings.xml`.
