@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.framework</groupId>
-    <artifactId>selenium-testng-framework</artifactId>
+    <artifactId>rest-assured-testng-framework</artifactId>
     <version>1.0.0</version>
-    <name>Selenium TestNG Automation Framework</name>
+    <name>REST API Automation Framework</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

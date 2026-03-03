@@ -11,11 +11,11 @@ public final class ConfigReader {
         try (InputStream inputStream = ConfigReader.class.getClassLoader()
                 .getResourceAsStream("config/config.properties")) {
             if (inputStream == null) {
-                throw new IllegalStateException("config/config.properties not found in classpath.");
+                throw new IllegalStateException("config/config.properties not found in classpath");
             }
             PROPERTIES.load(inputStream);
         } catch (IOException e) {
-            throw new IllegalStateException("Unable to load configuration properties.", e);
+            throw new IllegalStateException("Unable to load configuration properties", e);
         }
     }
 

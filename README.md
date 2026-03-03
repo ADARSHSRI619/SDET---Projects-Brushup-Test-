@@ -1,25 +1,25 @@
-# Selenium Automation Framework (Java + Maven + TestNG)
+# REST API Automation Framework (Java + Rest Assured + TestNG)
 
-Production-grade UI test automation framework following **Page Object Model (POM)** with support for:
+Production-grade REST API automation framework using **Java**, **Maven**, **Rest Assured**, and **TestNG** with:
 
-- Thread-safe WebDriver lifecycle using `ThreadLocal`
-- TestNG parallel execution
-- Explicit wait utilities with `WebDriverWait`
-- Allure reporting
-- Log4j2 logging
-- Environment-driven configuration through `.properties`
+- Base API client abstraction
+- Reusable request specification builder
+- Response validation utilities
+- JSON schema validation
+- Request/response logging via Log4j2
+- Allure reporting integration
+- Environment-based configuration through properties
 
 ## Tech Stack
 
 - Java 17
-- Maven
-- Selenium WebDriver 4
+- Maven 3.9+
+- Rest Assured 5
 - TestNG 7
-- WebDriverManager
-- Allure TestNG
 - Log4j2
+- Allure TestNG + Allure Rest Assured
 
-## Project Structure
+## Folder Structure
 
 ```text
 .
@@ -29,69 +29,68 @@ Production-grade UI test automation framework following **Page Object Model (POM
 │   ├── main
 │   │   └── java/com/framework
 │   │       ├── config/ConfigReader.java
-│   │       ├── driver/DriverFactory.java
-│   │       ├── pages/
-│   │       │   ├── BasePage.java
-│   │       │   ├── LoginPage.java
-│   │       │   ├── FormPage.java
-│   │       │   └── DynamicTablePage.java
-│   │       └── utils/WaitUtils.java
+│   │       └── api
+│   │           ├── builder/RequestSpecBuilderFactory.java
+│   │           ├── client/
+│   │           │   ├── BaseApiClient.java
+│   │           │   └── UserApiClient.java
+│   │           ├── filters/RequestResponseLoggingFilter.java
+│   │           └── utils/
+│   │               ├── ResponseValidator.java
+│   │               └── SchemaValidatorUtil.java
 │   └── test
-│       ├── java/com/framework
-│       │   ├── base/BaseTest.java
-│       │   └── tests/
-│       │       ├── LoginTest.java
-│       │       ├── FormSubmissionTest.java
-│       │       └── DynamicTableTest.java
+│       ├── java/com/framework/api
+│       │   ├── base/BaseApiTest.java
+│       │   └── tests/UserApiCrudTest.java
 │       └── resources
 │           ├── config/config.properties
+│           ├── schemas/get-user-schema.json
 │           └── log4j2.xml
-```
-
-## Setup
-
-1. Install Java 17+ and Maven 3.9+.
-2. Clone the repository.
-3. Install dependencies:
-
-```bash
-mvn clean install -DskipTests
 ```
 
 ## Configuration
 
-Update `src/test/resources/config/config.properties`:
+Set environment values in:
 
-- `environment` - execution environment label
-- `browser` - `chrome`, `firefox`, `edge`
-- `headless` - `true/false`
-- `implicit.wait.seconds`, `explicit.wait.seconds`
-- `app.base.url`, `app.form.url`
-- `app.username`, `app.password`
+`src/test/resources/config/config.properties`
 
-You can override properties via JVM system properties. Example:
+Default keys:
+
+- `environment`
+- `api.base.url`
+- `connect.timeout.ms`
+- `read.timeout.ms`
+
+You can override any property through JVM args:
 
 ```bash
-mvn test -Dbrowser=firefox -Dheadless=false
+mvn test -Dapi.base.url=https://your-host/api
 ```
 
-## Run Tests
+## Test Coverage (Sample)
 
-Run the full parallel suite:
+`UserApiCrudTest` includes:
+
+- GET `/users/{id}`
+- POST `/users`
+- PUT `/users/{id}`
+- DELETE `/users/{id}`
+
+## Execute Tests
+
+Run full suite (parallel methods via TestNG XML):
 
 ```bash
 mvn test
 ```
 
-Run a specific test class:
+## Reporting
 
-```bash
-mvn test -Dtest=LoginTest
-```
+Allure results are generated under:
 
-## Allure Reporting
+`target/allure-results`
 
-Generate and serve Allure report:
+Generate and open report:
 
 ```bash
 mvn allure:report
