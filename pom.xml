@@ -16,6 +16,7 @@
         <testng.version>7.10.2</testng.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
         <allure.version>2.27.0</allure.version>
+        <allure.maven.version>2.12.0</allure.maven.version>
         <log4j2.version>2.23.1</log4j2.version>
     </properties>
 
@@ -58,6 +59,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
@@ -65,9 +75,14 @@
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.version}</version>
             </plugin>
         </plugins>
     </build>

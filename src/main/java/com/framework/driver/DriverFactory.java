@@ -53,7 +53,9 @@ public final class DriverFactory {
         }
 
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigReader.getInt("implicit.wait.seconds")));
-        webDriver.manage().window().maximize();
+        if (!headless) {
+            webDriver.manage().window().maximize();
+        }
         DRIVER.set(webDriver);
     }
 

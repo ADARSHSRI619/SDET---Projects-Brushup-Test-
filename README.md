@@ -114,3 +114,8 @@ Execution logs are written to:
 - `LoginTest` - validates login flow and success message
 - `FormSubmissionTest` - validates form submission and confirmation message
 - `DynamicTableTest` - validates dynamic table row presence and expected content
+
+## Notes
+
+- First run requires network access to download Maven dependencies/plugins from Maven Central.
+- If your environment blocks Maven Central, configure a reachable mirror in your Maven `settings.xml`.
